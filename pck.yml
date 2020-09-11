@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: "newsletter-app\nSample SAM Template for newsletter-app  \n"
+Globals:
+  Function:
+    Environment:
+      Variables:
+        CHAT_ID: 123456
+        TOKEN: 123456:AAAAAAAAAAAAAAAAAAAAAAAAAAA
+    Timeout: 3
+Resources:
+  NewsletterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://onlinejavaclass-newsletter/98d584b0cd43eac8c2fa182f981e5b05
+      Handler: app.newsletter
+      Runtime: nodejs10.x
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /newsletter
+            Method: get
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/newsletter/
+  HelloWorldFunction:
+    Description: Hello World Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - NewsletterFunction
+      - Arn
+  HelloWorldFunctionIamRole:
+    Description: Implicit IAM Role created for Hello World function
+    Value:
+      Fn::GetAtt:
+      - NewsletterFunction
+      - Arn
