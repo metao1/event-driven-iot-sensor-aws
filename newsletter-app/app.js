@@ -4,7 +4,11 @@ const request = require('./index.js');
 let response;
 const TOKEN = process.env.TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
-
+const headers = {
+    "Access-Control-Allow-Headers": "application/json",
+    "Access-Control-Allow-Origin": "https://onlinejavaclass.com",
+    "Access-Control-Allow-Methods": "GET"
+}
 exports.newsletter = async (event, context, callback) => {
     try {
         if (event.queryStringParameters && event.queryStringParameters.email) {
@@ -20,13 +24,13 @@ exports.newsletter = async (event, context, callback) => {
             console.log(JSON.stringify(anything));
             response = {
                 'statusCode': 200,
-                'headers': {"Content-Type": "application/json"},
+                'headers': headers,
                 'body': 'ok'
             }
         } else {
             response = {
                 'statusCode': 405,
-                'headers': {"Content-Type": "application/json"},
+                'headers': headers,
                 'body': JSON.stringify({"error": "method not allowed."})
             }
         }
@@ -34,7 +38,7 @@ exports.newsletter = async (event, context, callback) => {
         console.error('error-> ' + err);
         response = {
             'statusCode': 503,
-            'headers': {"Content-Type": "application/json"},
+            'headers': headers,
             'body': JSON.stringify({"error": err})
         }
     }
