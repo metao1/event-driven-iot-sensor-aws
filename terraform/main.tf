@@ -39,6 +39,12 @@ resource "aws_iam_role" "lambda_execution_role" {
   })
 }
 
+data "archive_file" "lambda_archive" {
+  type        = "zip"  
+  source_dir = "../iot-lambda-app"
+  output_path = "iot-lambda-app.zip"
+}
+
 # Define the Lambda function
 resource "aws_lambda_function" "newsletter_function" {
   function_name    = "iot-app-function"
@@ -46,8 +52,8 @@ resource "aws_lambda_function" "newsletter_function" {
   handler          = "app.newsletter"
   timeout          = 10  # Adjust based on the expected execution time of your function
   role             = aws_iam_role.lambda_execution_role.arn
-  filename         = "iot-lambda-app.zip"
-  source_code_hash = filebase64sha256("iot-lambda-app.zip")
+  filename         = data.archive_file.lambda_archive.output_path
+  source_code_hash = filebase64sha256(data.archive_file.lambda_archive.output_path)
 }
 
 resource "aws_lambda_permission" "apigw" {
