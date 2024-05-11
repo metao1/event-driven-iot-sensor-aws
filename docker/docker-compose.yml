@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Berlin
+    ports:
+      - "1880:1880"
+    networks:
+      - node-red-net
+    volumes:
+      - ~/iot-data:/node-red-data
+
+networks:
+  node-red-net:

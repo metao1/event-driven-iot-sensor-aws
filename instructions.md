@@ -1,8 +1,16 @@
 
-sam init --runtime java8
+cd iot_lambda_app
 
-sam package --template-file template.yaml --output-template-file pck.yml --s3-bucket onlinejavaclass-newsletter
+npm install
 
-sam deploy --region eu-central-1 --capabilities CAPABILITY_IAM --template-file pck.yml  --stack-name aws-newsletter
+npx jest
 
-sam local start-api
+
+cd ../terraform
+
+terraform init
+
+terraform plan -out=plan.out
+
+terraform apply "plan.out"
+
