@@ -1,7 +1,7 @@
 {
-  "name": "newsletter",
+  "name": "iot-lambda-app",
   "version": "1.0.0",
-  "description": "newsletter for onlinejavaclass",
+  "description": "iot lambda app for handling iot requests",
   "main": "app.js",
   "repository": "https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-nodejs",
   "author": "SAM CLI",
