@@ -13,12 +13,12 @@ const notifier = new SlackNotifier(WEBHOOK_URL);
 exports.iot_handler = async (event, context) => {
     let statusCode = 200;
     let responseBody = 'ok';
-    
+    console.log('Received event:', JSON.stringify(event));
     try {
         const doc = {            
             "date": moment().tz('Europe/Berlin').format(),
             "userAgent": event.headers,
-            "message": JSON.stringify(event.body)
+            "message": event
         }    
         
         // Send a message to Slack

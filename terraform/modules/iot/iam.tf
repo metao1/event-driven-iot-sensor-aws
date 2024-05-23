@@ -1,14 +1,15 @@
-resource "aws_iam_role" "aws_iot_cloud_watch_role" {
-  name = "aws_iot_cloud_watch_role"
+resource "aws_iam_role" "lambda_exec_role" {
+  name = "lambda_exec_role"
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
       {
-        "Effect" : "Allow",
+        "Action" : "sts:AssumeRole",
         "Principal" : {
-          "Service" : "iot.amazonaws.com"
+          "Service" : "lambda.amazonaws.com"
         },
-        "Action" : "sts:AssumeRole"
+        "Effect" : "Allow",
+        "Sid" : ""
       }
     ]
   })
@@ -32,6 +33,22 @@ resource "aws_iot_policy" "iot_rule_national_policy" {
   lifecycle {
     create_before_destroy = true
   }
+}
+
+resource "aws_iam_role" "aws_iot_cloud_watch_role" {
+  name = "aws_iot_cloud_watch_role"
+  assume_role_policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Principal" : {
+          "Service" : "iot.amazonaws.com"
+        },
+        "Action" : "sts:AssumeRole"
+      }
+    ]
+  })
 }
 
 resource "aws_iam_role" "iot_logs_role" {

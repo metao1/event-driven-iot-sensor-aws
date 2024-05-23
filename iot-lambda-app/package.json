@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "iot lambda app for handling iot requests",
   "main": "app.js",
-  "repository": "https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-nodejs",
-  "author": "SAM CLI",
+  "repository": "https://github.com/metao1/event-driven-iot-sensor-aws.git",
+  "author": "Mehrdad Karami",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.8",
     "moment": "2.27.0",
-    "moment-timezone": "0.5.31"
+    "moment-timezone": "^0.5.45"
   },
   "scripts": {
     "test": "mocha tests/unit/"

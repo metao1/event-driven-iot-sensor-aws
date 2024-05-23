@@ -57,6 +57,10 @@ resource "aws_iot_topic_rule" "rule_connection_logs" {
   sql         = var.rule_connection_logs
   sql_version = "2016-03-23"
 
+  lambda {
+    function_arn = var.LAMBDA_FUNCTION_ARN
+  }
+
   cloudwatch_logs {
     role_arn       = aws_iam_role.iot_logs_role.arn
     log_group_name = var.cloudwatch_log_group_name

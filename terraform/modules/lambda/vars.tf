@@ -10,7 +10,6 @@ variable "ACCOUNT_ID" {
 
 }
 
-
-variable "source_arn" {
+variable "log_group_name" {
 
 }

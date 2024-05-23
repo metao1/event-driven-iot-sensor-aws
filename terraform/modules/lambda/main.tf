@@ -7,6 +7,10 @@ resource "aws_lambda_function" "iot_function" {
   role             = aws_iam_role.lambda_execution_role.arn
   filename         = data.archive_file.lambda_archive.output_path
   source_code_hash = filebase64sha256(data.archive_file.lambda_archive.output_path)
+
+  logging_config {
+    log_format = "JSON"
+  }
 }
 
 # resource "aws_lambda_permission" "apigw" {

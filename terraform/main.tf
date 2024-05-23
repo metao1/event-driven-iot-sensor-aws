@@ -11,7 +11,7 @@ module "lambda" {
   lambda_function_name = var.lambda_function_name
   ACCOUNT_ID           = var.ACCOUNT_ID
   AWS_REGION           = var.AWS_REGION
-  source_arn           = ""
+  log_group_name       = module.cloudwatch.log_group_name
 }
 
 
