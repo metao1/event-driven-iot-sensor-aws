@@ -12,11 +12,3 @@ resource "aws_lambda_function" "iot_function" {
     log_format = "JSON"
   }
 }
-
-# resource "aws_lambda_permission" "apigw" {
-#   statement_id  = "AllowAPIGatewayInvoke"
-#   action        = "lambda:InvokeFunction"
-#   function_name = aws_lambda_function.iot_function.arn
-#   principal     = "lambda.amazonaws.com"
-#   source_arn    = var.source_arn
-# }`

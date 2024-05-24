@@ -145,7 +145,7 @@ touch terraform.tfvars # this will create a file for setting terraform varaible 
 
 nano terraform.tfvars
 ``` 
-  - terraform.tfvars: edit the variables, especially AWS_ACCOUNT_ID,AWS_REGION,IOT_CERN_ARN with specified values in env variables which you captured in the previous step
+  - terraform.tfvars: edit the variables, especially AWS_ACCOUNT_ID,AWS_REGION with specified values in env variables which you captured in the previous step
 
 
 4. Start terraform in the terraform folder 
@@ -169,7 +169,42 @@ Head over to AWS Core and select Thing from the left navigation bar as show in t
 
 ![aws_core_things](files/sc1.png)
 
-export IOT_CERN_ARN =  "arn:aws:iot:<AWS_REGION>:<ACCOUNT_ID>:cert/<CERT_ID>"
+Click over 'rule_natural' and then select 'certificates' tabs. Click over 'Create certificate' butto to create new certificates.
+
+![aws_core_things_certificates](files/sc2.png)
+
+In the shown dialog, download all certificates. !!Remember to download them now!!
+
+![aws_core_things_certificates_dialog](files/sc3.png)
+
+After downloading certificates, we can see the a resource with link in 'Certificates' is created. This is in 'inactive' mode, we need to activate it in next step.
+
+![aws_core_things_certificates_dialog](files/sc4.png)
+
+Click on the link, and then select 'attach policy'.
+
+![aws_core_things_certificates_dialog](files/sc5.png)
+
+
+From 'Choose AWS iot policy' drop-down in the dialog, select 'iot_rule_national_policy'
+
+![aws_core_things_certificates_dialog](files/sc6.png)
+
+
+Copy 'certificate arn' that has the following format
+
+```
+"arn:aws:iot:<AWS_REGION>:<ACCOUNT_ID>:cert/<CERT_ID>"
+```
+
+Edit the 'terraform.tfvars' and paste the value in the 'iot_cert_arn'
+
+```
+nano terraform.tfvars
+``` 
+  - terraform.tfvars: pase the variable, iot_cert_arn
+```
+
 
 ### Step 4 - Deploy sensors and devices in the National Conservation Park 
 
