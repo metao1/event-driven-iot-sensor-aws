@@ -88,7 +88,7 @@ Look for the ARN of the notification function, the string is similar to the one 
 ```sh 
 aws lambda get -function --function-name=iot-telegram-dev-notification | grep FunctionArn 
 ``` 
-    FunctionArn = "arn:aws:lambda:REGION:XXXXXXXXX:function:iot-telegram-dev-notification" 
+    FunctionArn = "arn:aws:lambda:<AWS_REGION>:XXXXXXXXX:function:iot-telegram-dev-notification" 
 
 Save the Lambda function string, which is in quotation marks "", you will use it shortly in the code Terraform to climb Thing. 
 
@@ -225,6 +225,7 @@ docker-compose up -d
 
 5. Configure the node red to access your Thing, which was created in step 3 
 
+![node_red](files/sc7.png)
 
 
 ## Roadmap 

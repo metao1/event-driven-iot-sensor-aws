@@ -195,7 +195,7 @@
                 "id": "18fcfd89.cf5c2a",
                 "type": "inject",
                 "z": "6b129507.8172f4",
-                "name": "Fonte de calor e fogo",
+                "name": "Source of heat and fire",
                 "props": [
                         {
                                 "p": "payload"
@@ -254,8 +254,8 @@
                 "id": "41392af2.745754",
                 "type": "mqtt out",
                 "z": "6b129507.8172f4",
-                "name": "Fontes de Água",
-                "topic": "aguas",
+                "name": "Water sources",
+                "topic": "water",
                 "qos": "0",
                 "retain": "",
                 "broker": "",

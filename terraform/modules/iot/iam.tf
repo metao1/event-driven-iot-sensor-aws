@@ -16,8 +16,8 @@ resource "aws_iam_role" "lambda_exec_role" {
 }
 
 # Policy for certification
-resource "aws_iot_policy" "iot_rule_national_policy" {
-  name = "iot_rule_national_policy"
+resource "aws_iot_policy" "iot_national_policy" {
+  name = "iot_national_policy"
 
   policy = jsonencode({
     "Version" : "2012-10-17",
@@ -35,8 +35,8 @@ resource "aws_iot_policy" "iot_rule_national_policy" {
   }
 }
 
-resource "aws_iam_role" "aws_iot_cloud_watch_role" {
-  name = "aws_iot_cloud_watch_role"
+resource "aws_iam_role" "iot_cloud_watch_role" {
+  name = "iot_cloud_watch_role"
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [

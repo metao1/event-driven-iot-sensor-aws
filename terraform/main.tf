@@ -5,6 +5,7 @@ module "lambda" {
   accout_id            = var.iot_cert_arn
   aws_region           = var.aws_region
   log_group_name       = module.cloudwatch.log_group_name
+  depends_on           = [module.cloudwatch]
 }
 
 
@@ -15,7 +16,7 @@ module "iot_thing" {
   cloudwatch_log_group_name = module.cloudwatch.log_group_name
   lambda_function_name      = module.lambda.LAMBDA_FUNCTION_ARN
   iot_cert_arn              = var.iot_cert_arn
-  depends_on                = [module.cloudwatch, module.lambda]
+  depends_on                = [module.lambda]
 }
 
 # Define the CloudWatch resources that will be used for logging from Lambda and IoT

@@ -1,5 +1,5 @@
 variable "iot_thing_name" {
-  default = "rule_natural"
+  default = "iot_natural"
 }
 
 variable "iot_cert_arn" {
