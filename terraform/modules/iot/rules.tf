@@ -7,7 +7,7 @@ resource "aws_iot_topic_rule" "rule_national_park_habitantes" {
   sql_version = var.sql_version
 
   lambda {
-    function_arn = var.LAMBDA_FUNCTION_ARN
+    function_arn = var.lambda_function_name
   }
 
   cloudwatch_logs {
@@ -24,7 +24,7 @@ resource "aws_iot_topic_rule" "rule_national_park_habitantes_fire" {
   sql_version = var.sql_version
 
   lambda {
-    function_arn = var.LAMBDA_FUNCTION_ARN
+    function_arn = var.lambda_function_name
   }
 
   cloudwatch_logs {
@@ -41,7 +41,7 @@ resource "aws_iot_topic_rule" "rule_waters_national_park" {
   sql_version = var.sql_version
 
   lambda {
-    function_arn = var.LAMBDA_FUNCTION_ARN
+    function_arn = var.lambda_function_name
   }
 
   cloudwatch_logs {
@@ -58,7 +58,7 @@ resource "aws_iot_topic_rule" "rule_connection_logs" {
   sql_version = "2016-03-23"
 
   lambda {
-    function_arn = var.LAMBDA_FUNCTION_ARN
+    function_arn = var.lambda_function_name
   }
 
   cloudwatch_logs {

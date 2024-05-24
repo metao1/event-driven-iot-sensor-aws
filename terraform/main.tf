@@ -1,30 +1,24 @@
-# module "apigateway" {
-#   source               = "./modules/api_gw"
-#   ACCOUNT_ID           = var.ACCOUNT_ID
-#   AWS_REGION           = var.AWS_REGION
-#   API_GW_ARN           = var.API_GW_ARN
-#   lambda_function_name = var.lambda_function_name
-# }
-
+# Define the Lambda function that will be triggered by IoT
 module "lambda" {
   source               = "./modules/lambda"
   lambda_function_name = var.lambda_function_name
-  ACCOUNT_ID           = var.ACCOUNT_ID
-  AWS_REGION           = var.AWS_REGION
+  accout_id            = var.iot_cert_arn
+  aws_region           = var.aws_region
   log_group_name       = module.cloudwatch.log_group_name
 }
 
 
-# IoT resources
+# IoT resources that creates a MQTT broker on AWS IoT gateway
 # depends on cloudwatch and lambda
 module "iot_thing" {
   source                    = "./modules/iot"
-  LAMBDA_FUNCTION_ARN       = module.lambda.LAMBDA_FUNCTION_ARN
   cloudwatch_log_group_name = module.cloudwatch.log_group_name
-  IOT_CERT_ARN              = var.IOT_CERT_ARN
+  lambda_function_name      = module.lambda.LAMBDA_FUNCTION_ARN
+  iot_cert_arn              = var.iot_cert_arn
   depends_on                = [module.cloudwatch, module.lambda]
 }
 
+# Define the CloudWatch resources that will be used for logging from Lambda and IoT
 module "cloudwatch" {
   source = "./modules/cloudwatch"
 }

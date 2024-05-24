@@ -2,11 +2,11 @@ variable "iot_thing_name" {
   default = "rule_natural"
 }
 
-variable "IOT_CERT_ARN" {
+variable "iot_cert_arn" {
 
 }
 
-variable "LAMBDA_FUNCTION_ARN" {
+variable "lambda_function_name" {
 
 }
 

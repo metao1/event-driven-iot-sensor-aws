@@ -120,20 +120,32 @@ Now it's time to edit the files to upload resources to AWS.
 
 ```
 terraform/
-└── modules/
-    ├── iot_thing/
-    ├── iot_policy/
-    ├── iot_policy_attachment/
-    ├── iot_thing_principal_attachment/
-    └── iot_topic_rule/
+└── modules/    
+    ├── api_gw/
+    ├── cloudwatch/
+    ├── iot/
+    └── lambda/
+- main.tf    
 ```
 
-3. Edit the deploy, I setup the files below, to configure the details of the deploy 
-```sh 
-cd terraform 
-nano vars.tf 
+Export AWS account id value to the environment variable.
+
+```sh
+export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+export AWS_REGION = "<AWS_REGION>"
+```
+
+
+3. Edit the deploy, I setup the files below, to configure the details of the deploy
+
+```sh
+cd terraform
+
+touch terraform.tfvars # this will create a file for setting terraform varaible files securely
+
+nano terraform.tfvars
 ``` 
-  - vars.tf: edit the variables, especially LAMBDA_FUNCTION_ARN, which you captured in the steps previous ones and 
+  - terraform.tfvars: edit the variables, especially AWS_ACCOUNT_ID,AWS_REGION,IOT_CERN_ARN with specified values in env variables which you captured in the previous step
 
 
 4. Start terraform in the terraform folder 
@@ -152,6 +164,12 @@ Cross your fingers, I would recommend getting a coffee, but it will be quick.
 
 Once created, take a general look at the dashboard to see with your own eyes the work done by the code. 
 
+7. Create secure communication between IoT devices and our AWS IoT MQTT broker is vital. We need to create relevent certificates on AWS Console (intentinally manually easy step)
+Head over to AWS Core and select Thing from the left navigation bar as show in the image below.
+
+[aws_core_things](files/sc1.png)
+
+export IOT_CERN_ARN =  "arn:aws:iot:<AWS_REGION>:<ACCOUNT_ID>:cert/<CERT_ID>"
 
 ### Step 4 - Deploy sensors and devices in the National Conservation Park 
 

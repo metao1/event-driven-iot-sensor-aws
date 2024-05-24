@@ -2,11 +2,11 @@ variable "lambda_function_name" {
 
 }
 
-variable "AWS_REGION" {
+variable "aws_region" {
 
 }
 
-variable "ACCOUNT_ID" {
+variable "accout_id" {
 
 }
 
