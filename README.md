@@ -193,17 +193,16 @@ From 'Choose AWS iot policy' drop-down in the dialog, select 'iot_rule_national_
 
 Copy 'certificate arn' that has the following format
 
-```
+```sh
 "arn:aws:iot:<AWS_REGION>:<ACCOUNT_ID>:cert/<CERT_ID>"
 ```
 
 Edit the 'terraform.tfvars' and paste the value in the 'iot_cert_arn'
 
-```
+```sh
 nano terraform.tfvars
 ``` 
   - terraform.tfvars: pase the variable, iot_cert_arn
-```
 
 
 ### Step 4 - Deploy sensors and devices in the National Conservation Park 
