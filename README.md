@@ -167,7 +167,7 @@ Once created, take a general look at the dashboard to see with your own eyes the
 7. Create secure communication between IoT devices and our AWS IoT MQTT broker is vital. We need to create relevent certificates on AWS Console (intentinally manually easy step)
 Head over to AWS Core and select Thing from the left navigation bar as show in the image below.
 
-[aws_core_things](files/sc1.png)
+![aws_core_things](files/sc1.png)
 
 export IOT_CERN_ARN =  "arn:aws:iot:<AWS_REGION>:<ACCOUNT_ID>:cert/<CERT_ID>"
 
