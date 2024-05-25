@@ -6,7 +6,7 @@ variable "iot_cert_arn" {
 
 }
 
-variable "lambda_function_name" {
+variable "lambda_function_arn" {
 
 }
 

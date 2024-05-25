@@ -18,3 +18,8 @@ variable "aws_account_id" {
   description = "AWS account ID"
   type        = string
 }
+
+variable "slack_webhook_url" {
+  description = "value of slack webhook url"
+  type        = string
+}

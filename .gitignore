@@ -172,3 +172,8 @@ terraform.rc
 *.zip
 
 *.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfstate.backup

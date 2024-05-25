@@ -16,10 +16,12 @@
 * [Thanks ](#acknowledgements) 
 
 
-## About the project 
+## About the project
+
 
 The objective is to create an end-to-end event-driven AWS project, simulating an animal and species monitoring platform of an environmental preservation park, all with open source tools and the AWS public cloud. 
 
+![aws_architecture](files/aws-iot-System.png)
 
 ### Technology stack 
 Some tools and frameworks were used to deploy this stack, including:
@@ -42,7 +44,7 @@ Let's go quickly, here are the prerequisites to start the setup and deployment:
 
 What you will need already configure and install, look on the vendor's websites for instructions on how to install and configure: 
 
-* [AWS-CLI](https://aws.amazon.com/pt/cli/) 
+* [AWS-CLI](https://aws.amazon.com/pt/cli/)
 * [Docker-compose](https://docs.docker.com/compose/) 
 * [Serverless](https://www.serverless.com/framework/docs/getting-started/) 
 
@@ -57,43 +59,36 @@ git clone https://github.com/metao1/iot-event-streaming-aws.git
 ### Step 2 - Lambda Functions 
 
 1. Creating your Lambda functions 
+
 ```sh 
-cd serverless/ 
+cd iot-lambda-app
 ``` 
-2. Configure the Telegram TOKEN and ChatId where you want to receive notifications: 
-` ``sh 
-vi serverless.env.yml 
-``` 
-3. Install all dependencies of the serverless framework, inside the iot-telegram folder: 
+
+2. Testing the lambda function
+
 ```sh
-npm install 
+npm install
+npm test
 ``` 
-4. Now it's time to deploy: 
-```sh 
-serverless deploy 
-``` 
-5. Configure your bot's webhook, after completing step 4, you should receive the link to your function, then, configure the webhook as follows: 
-```sh 
-curl -X POST https:/xxxxxxxxx/prod/set_webhook 
-``` 
-Pay attention to the return message, the message/string "ok" should appear. 
 
-6. Finally, see the details of your functions that were installed: 
-```sh 
+3. Configure your slack webhook, after completing step 3, you should obtain the link to your webhook as follows:
 
+
+4. Finally, see the details of your functions that were installed: 
+
+```sh
 aws lambda list-functions 
 ``` 
 Look for the ARN of the notification function, the string is similar to the one below: 
 
 ```sh 
-aws lambda get -function --function-name=iot-telegram-dev-notification | grep FunctionArn 
-``` 
-    FunctionArn = "arn:aws:lambda:<AWS_REGION>:XXXXXXXXX:function:iot-telegram-dev-notification" 
+aws lambda get-function --function-name=iot-telegram-dev-notification | grep FunctionArn
 
-Save the Lambda function string, which is in quotation marks "", you will use it shortly in the code Terraform to climb Thing. 
+``` 
+    FunctionArn = "arn:aws:lambda:<AWS_REGION>:XXXXXXXXX:function:iot_function" 
+```
 
 Take a look at your AWS account's dashboard and see if the functions are already applied for validation. 
-
 
 ### Step 3 - Deploy AWS resources - IoT 
 
@@ -202,12 +197,14 @@ Edit the 'terraform.tfvars' and paste the value in the 'iot_cert_arn'
 ```sh
 nano terraform.tfvars
 ``` 
+
   - terraform.tfvars: pase the variable, iot_cert_arn
 
 
 ### Step 4 - Deploy sensors and devices in the National Conservation Park 
 
 1. Here you will need docker and docker-compose installed on your computer 
+
 ```sh 
 cd docker 
 docker-compose up -d 
@@ -226,7 +223,6 @@ docker-compose up -d
 5. Configure the node red to access your Thing, which was created in step 3 
 
 ![node_red](files/sc7.png)
-
 
 ## Roadmap 
 

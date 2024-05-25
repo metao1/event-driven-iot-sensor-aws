@@ -1,14 +1,14 @@
 const moment = require('moment-timezone');
 const SlackNotifier = require('./slackNotifier');
 
-const WEBHOOK_URL = process.env.WEBHOOK_ID;
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 const headers = {
     "Access-Control-Allow-Headers": "application/json",
     "Access-Control-Allow-Origin": "*", // TODO: change this to specified domain
     "Access-Control-Allow-Methods": "GET"
 }
 
-const notifier = new SlackNotifier(WEBHOOK_URL);
+const notifier = new SlackNotifier(SLACK_WEBHOOK_URL);
 
 exports.iot_handler = async (event, context) => {
     let statusCode = 200;

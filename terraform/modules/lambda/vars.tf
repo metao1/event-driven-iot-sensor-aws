@@ -13,3 +13,7 @@ variable "accout_id" {
 variable "log_group_name" {
 
 }
+
+variable "slack_webhook_url" {
+
+}
