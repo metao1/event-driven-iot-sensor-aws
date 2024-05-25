@@ -83,6 +83,9 @@ Look for the ARN of the notification function, the string is similar to the one 
 
 ```sh 
 aws lambda get-function --function-name=iot-telegram-dev-notification | grep FunctionArn
+```
+
+Something like below should be shown
 
 ``` 
     FunctionArn = "arn:aws:lambda:<AWS_REGION>:XXXXXXXXX:function:iot_function" 
