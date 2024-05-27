@@ -4,7 +4,7 @@ resource "aws_lambda_function" "iot_function" {
   runtime          = "nodejs20.x"
   handler          = "app.iot_handler"
   timeout          = 3 # can be between 3 and 900 seconds
-  role             = aws_iam_role.lambda_execution_role.arn
+  role             = aws_iam_role.lambda_execute_role.arn
   filename         = data.archive_file.lambda_archive.output_path
   source_code_hash = filebase64sha256(data.archive_file.lambda_archive.output_path)
 

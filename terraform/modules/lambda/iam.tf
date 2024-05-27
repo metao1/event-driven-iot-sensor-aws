@@ -1,5 +1,5 @@
 # Define the Lambda execution role
-resource "aws_iam_role" "lambda_execution_role" {
+resource "aws_iam_role" "lambda_execute_role" {
   name = "lambda-execution-role"
 
   assume_role_policy = jsonencode({
@@ -39,12 +39,12 @@ resource "aws_iam_policy" "lambda_logging_policy" {
 
 
 resource "aws_iam_role_policy_attachment" "lambda_logging_policy_attachment" {
-  role       = aws_iam_role.lambda_execution_role.name
+  role       = aws_iam_role.lambda_execute_role.name
   policy_arn = aws_iam_policy.lambda_logging_policy.arn
 }
 
 # Allow IoT to Invoke Lambda
-resource "aws_lambda_permission" "allow_iot_to_invoke" {
+resource "aws_lambda_permission" "allow_function_invoke" {
   statement_id  = "AllowExecutionFromIoT"
   action        = "lambda:InvokeFunction"
   function_name = var.lambda_function_name
@@ -54,7 +54,7 @@ resource "aws_lambda_permission" "allow_iot_to_invoke" {
 # Attach Policy to Role
 resource "aws_iam_role_policy_attachment" "attach_lambda_policy" {
   policy_arn = aws_iam_policy.lambda_policy.arn
-  role       = aws_iam_role.lambda_execution_role.name
+  role       = aws_iam_role.lambda_execute_role.name
 }
 
 # Create the IAM policy for Lambda execution
@@ -67,6 +67,6 @@ resource "aws_iam_policy" "lambda_policy" {
 # Attach the Lambda execution policy to the IAM role
 resource "aws_iam_policy_attachment" "lambda_policy_attachment" {
   name       = "lambda-policy-attachment"
-  roles      = [aws_iam_role.lambda_execution_role.name]
+  roles      = [aws_iam_role.lambda_execute_role.name]
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
