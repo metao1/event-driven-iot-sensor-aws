@@ -30,7 +30,7 @@ Some tools and frameworks were used to deploy this stack, including:
 * [Serverless](https://serverless.com): Lambda functions 
 * [Terraform](https://terraform.io): Setup of AWS services and products 
 * [Docker](https://docker.com): For containers and microservices 
-* [Telegram](https://core.telegram.org/bots): In order to receive notifications 
+* [Slack](https://api.slack.com/messaging/webhooks): In order to receive notifications 
 
 The stack itself is intended to be all code-oriented, IaC, so you won't need to create anything in the AWS console, everything is done on command line.
 
